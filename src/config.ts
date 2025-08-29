@@ -48,6 +48,10 @@ async function replacement(name: string): Promise<string|undefined> {
   if (name === 'userHome') {
     return homedir();
   }
+  // Executable extension: '.exe' on Windows, '' otherwise.
+  if (name === 'executableExtension') {
+    return process.platform === 'win32' ? '.exe' : '';
+  }
   if (name === 'workspaceRoot' || name === 'workspaceFolder' ||
       name === 'cwd') {
     if (vscode.workspace.rootPath !== undefined)
