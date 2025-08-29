@@ -56,6 +56,17 @@ class EnableEditsNearCursorFeature implements vscodelc.StaticFeature {
   clear() {}
 }
 
+class DisableSemanticTokensFeature implements vscodelc.StaticFeature {
+  initialize() {}
+  fillClientCapabilities(capabilities: vscodelc.ClientCapabilities): void {
+    if (capabilities.textDocument) {
+      capabilities.textDocument.semanticTokens = undefined;
+    }
+  }
+  getState(): vscodelc.FeatureState { return {kind: 'static'}; }
+  clear() {}
+}
+
 export class ClangdContext implements vscode.Disposable {
   subscriptions: vscode.Disposable[];
   client: ClangdLanguageClient;
@@ -207,6 +218,7 @@ export class ClangdContext implements vscode.Disposable {
         // max restart count
         await config.get<boolean>('restartAfterCrash') ? /*default*/ 4 : 0);
     client.registerFeature(new EnableEditsNearCursorFeature);
+    client.registerFeature(new DisableSemanticTokensFeature());
 
     return client;
   }
