@@ -172,7 +172,7 @@
                 },
                 "clangd.inactiveRegions.useBackgroundHighlight": {
                     "type": "boolean",
-                    "default": false,
+                    "default": true,
                     "description": "Use a background highlight rather than opacity to identify inactive preprocessor regions."
                 },
                 "clangd.inactiveRegions.opacity": {
