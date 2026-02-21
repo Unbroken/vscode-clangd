@@ -50,7 +50,7 @@ const esbuildProblemMatcherPlugin = {
         else
           console.error(`> unknown: error: ${text}`);
       });
-      console.error('[watch] build finished');
+      console.log('[watch] build finished');
     });
   }
 };
