@@ -47,7 +47,6 @@
         "git-clang-format": "git-clang-format --extensions=ts"
     },
     "dependencies": {
-        "@clangd/install": "0.1.20",
         "vscode-languageclient": "^9.0.1"
     },
     "devDependencies": {
@@ -144,6 +143,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Check for language server updates on startup."
+                },
+                "clangd.suggestMalterlibInstall": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Offer to download and install the Malterlib clangd distribution when clangd.path is unset and no clangd has been installed by this extension. When disabled, a clangd found on PATH is used instead."
                 },
                 "clangd.onConfigChanged": {
                     "type": "string",
