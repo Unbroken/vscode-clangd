@@ -141,7 +141,7 @@
                 },
                 "clangd.checkUpdates": {
                     "type": "boolean",
-                    "default": false,
+                    "default": true,
                     "description": "Check for language server updates on startup."
                 },
                 "clangd.suggestMalterlibInstall": {
