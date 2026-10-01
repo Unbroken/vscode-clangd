@@ -149,6 +149,11 @@
                     "default": true,
                     "description": "Offer to download and install the Malterlib clangd distribution when clangd.path is unset and no clangd has been installed by this extension. When disabled, a clangd found on PATH is used instead."
                 },
+                "clangd.reparseOnExternalChanges": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Reparse open files when C/C++ files change on disk outside the editor, e.g. when another tool edits a header. Not needed with a clangd that watches files itself."
+                },
                 "clangd.onConfigChanged": {
                     "type": "string",
                     "default": "prompt",
