@@ -99,13 +99,19 @@ export class ClangdContext implements vscode.Disposable {
         clangdArguments[i] = quote(clangdArguments[i]);
       }
     }
+    // Unbroken Code can lower the priority of processes started by extensions
+    // (extensions.childProcessPriority), which would also slow down parsing
+    // the files open in the editor while e.g. a build runs. clangd lowers the
+    // priority of its background indexing itself
+    // (--background-index-priority), so always start it at normal priority.
     const clangd: vscodelc.Executable = {
       command: clangdPath,
       args: clangdArguments,
       options: {
         cwd: vscode.workspace.rootPath || process.cwd(),
-        shell: useScriptAsExecutable
-      }
+        shell: useScriptAsExecutable,
+        __priority: 'default'
+      } as vscodelc.ExecutableOptions
     };
     const traceFile = await config.get<string>('trace');
     if (!!traceFile) {
