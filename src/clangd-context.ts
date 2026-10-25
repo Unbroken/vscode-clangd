@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as vscodelc from 'vscode-languageclient/node';
 
+import * as approximateSemanticTokens from './approximate-semantic-tokens';
 import * as ast from './ast';
 import * as config from './config';
 import * as configFileWatcher from './config-file-watcher';
@@ -146,6 +147,7 @@ export class ClangdContext implements vscode.Disposable {
       // We also mark the list as incomplete to force retrieving new rankings.
       // See https://github.com/microsoft/language-server-protocol/issues/898
       middleware: {
+        ...approximateSemanticTokens.middleware(() => client),
         provideCompletionItem: async (document, position, context, token,
                                       next) => {
           if (!await config.get<boolean>('enableCodeCompletion'))
